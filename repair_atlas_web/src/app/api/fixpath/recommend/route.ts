@@ -83,7 +83,16 @@ export async function POST(request: NextRequest) {
 
     if (existingFixPaths.length > 0) {
       return NextResponse.json({
-        recommendations: existingFixPaths.map((fp) => ({
+        recommendations: existingFixPaths.map((fp: {
+          id: string;
+          title: string;
+          difficulty: string;
+          riskLevel: string;
+          estimatedTime: number;
+          estimatedCost: number | null;
+          provenanceScore: number;
+          sourceType: string;
+        }) => ({
           id: fp.id,
           title: fp.title,
           difficulty: fp.difficulty,

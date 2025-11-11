@@ -240,7 +240,16 @@ export async function GET(request: NextRequest) {
     });
 
     return NextResponse.json({
-      defects: defects.map((defect) => ({
+      defects: defects.map((defect: {
+        id: string;
+        itemId: string;
+        item: unknown;
+        symptoms: string[];
+        description: string | null;
+        photoUrls: string[];
+        severity: string;
+        createdAt: Date;
+      }) => ({
         id: defect.id,
         itemId: defect.itemId,
         item: defect.item,

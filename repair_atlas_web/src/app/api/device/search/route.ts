@@ -101,7 +101,16 @@ export async function GET(request: NextRequest) {
     });
 
     return NextResponse.json({
-      results: userItems.map((item) => ({
+      results: userItems.map((item: {
+        id: string;
+        brand: string | null;
+        model: string | null;
+        modelNumber: string | null;
+        category: string | null;
+        photoUrls: string[];
+        confidence: number | null;
+        createdAt: Date;
+      }) => ({
         id: item.id,
         brand: item.brand,
         model: item.model,

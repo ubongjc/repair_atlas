@@ -103,7 +103,16 @@ export async function GET(
       verifiedAt: fixPath.verifiedAt?.toISOString(),
       verifiedBy: fixPath.verifiedBy,
       provenanceScore: fixPath.provenanceScore,
-      parts: fixPath.parts.map((part) => ({
+      parts: fixPath.parts.map((part: {
+        id: string;
+        name: string;
+        partNumber: string | null;
+        compatibleModels: string[];
+        estimatedCost: number | null;
+        currency: string | null;
+        affiliateUrl: string | null;
+        availability: string | null;
+      }) => ({
         id: part.id,
         name: part.name,
         partNumber: part.partNumber,

@@ -160,7 +160,7 @@ export async function GET(
       prerequisites: {
         skills: fixPath.requiredSkills || [],
         tools: extractToolsList(fixPath.steps as RepairStep[]),
-        parts: fixPath.parts.map((p) => p.name),
+        parts: fixPath.parts.map((p: { name: string }) => p.name),
         workspace: getWorkspaceRequirements(fixPath.defect.item.category),
       },
       safetyInformation: {

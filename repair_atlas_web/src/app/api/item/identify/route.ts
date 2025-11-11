@@ -147,7 +147,17 @@ export async function GET() {
     });
 
     return NextResponse.json({
-      items: items.map((item) => ({
+      items: items.map((item: {
+        id: string;
+        category: string | null;
+        brand: string | null;
+        model: string | null;
+        modelNumber: string | null;
+        confidence: number | null;
+        photoUrls: string[];
+        metadata: unknown;
+        createdAt: Date;
+      }) => ({
         id: item.id,
         category: item.category,
         brand: item.brand,

@@ -168,13 +168,14 @@ export async function GET(request: NextRequest) {
   }
 }
 
-function generateVendorSources(part: { estimatedCost?: number | null; affiliateUrl?: string | null }): PartSource[] {
+function generateVendorSources(part: { partNumber?: string; estimatedCost?: number | null; affiliateUrl?: string | null }): PartSource[] {
   const basePrice = part.estimatedCost || 29.99;
+  const partNum = part.partNumber || '';
 
   return [
     {
       vendor: 'Amazon',
-      url: part.affiliateUrl || `https://amazon.com/s?k=${encodeURIComponent(part.partNumber || '')}`,
+      url: part.affiliateUrl || `https://amazon.com/s?k=${encodeURIComponent(partNum)}`,
       price: basePrice * 1.1,
       currency: 'USD',
       shipping: 0, // Prime eligible
@@ -187,7 +188,7 @@ function generateVendorSources(part: { estimatedCost?: number | null; affiliateU
     },
     {
       vendor: 'eBay',
-      url: `https://ebay.com/sch/i.html?_nkw=${encodeURIComponent(part.partNumber || '')}`,
+      url: `https://ebay.com/sch/i.html?_nkw=${encodeURIComponent(partNum)}`,
       price: basePrice * 0.85,
       currency: 'USD',
       shipping: 5.99,
@@ -213,7 +214,7 @@ function generateVendorSources(part: { estimatedCost?: number | null; affiliateU
     },
     {
       vendor: 'AliExpress',
-      url: `https://aliexpress.com/wholesale?SearchText=${encodeURIComponent(part.partNumber || '')}`,
+      url: `https://aliexpress.com/wholesale?SearchText=${encodeURIComponent(partNum)}`,
       price: basePrice * 0.6,
       currency: 'USD',
       shipping: 0,
