@@ -1,0 +1,13 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+		/* Basic Xcode project structure */
+		/* This is a placeholder - in practice, use Xcode to generate this file */
+		/* For manual scaffolding, the key components are referenced below */
+	};
+	rootObject = RepairAtlasProject;
+}
